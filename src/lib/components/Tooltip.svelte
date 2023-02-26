@@ -6,12 +6,12 @@
 
 	function mouseOver(event: MouseEvent) {
 		isHovered = true;
-		x = event.pageX + 5;
-		y = event.pageY + 5;
+		x = event.pageX + 15;
+		y = event.pageY + 15;
 	}
 	function mouseMove(event: MouseEvent) {
-		x = event.pageX + 5;
-		y = event.pageY + 5;
+		x = event.pageX + 15;
+		y = event.pageY + 15;
 	}
 	function mouseLeave() {
 		isHovered = false;
@@ -23,16 +23,10 @@
 </div>
 
 {#if isHovered}
-	<div style="top: {y}px; left: {x}px;" class="tooltip">{label}</div>
+	<div
+		style="top: {y}px; left: {x}px;"
+		class="border border-gray-200 shadow bg-headline rounded p-1 absolute"
+	>
+		{label}
+	</div>
 {/if}
-
-<style>
-	.tooltip {
-		border: 1px solid #ddd;
-		box-shadow: 1px 1px 1px #ddd;
-		background: white;
-		border-radius: 4px;
-		padding: 4px;
-		position: absolute;
-	}
-</style>

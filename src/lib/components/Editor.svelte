@@ -6,9 +6,12 @@
 	import { replaceAll } from '@milkdown/utils';
 
 	import { nord } from '@milkdown/theme-nord';
+	import { onDestroy } from 'svelte';
+	import type { Unsubscriber } from 'svelte/store';
 
 	let editor: Promise<Editor>;
 	let hasBeenUpdated = false;
+	let unsubscribe: Unsubscriber | undefined = undefined;
 
 	function createEditor(dom: HTMLDivElement) {
 		editor = Editor.make()
@@ -26,12 +29,14 @@
 			.create();
 
 		editor.then((e) => {
-			noteContent.subscribe((content) => {
+			unsubscribe = noteContent.subscribe((content) => {
 				e.action(replaceAll(content));
 				hasBeenUpdated = false;
 			});
 		});
 	}
+
+	if (unsubscribe) onDestroy(unsubscribe);
 </script>
 
 <div

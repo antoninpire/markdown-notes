@@ -58,3 +58,7 @@
 		</form>
 	</Card>
 </div>
+
+<svelte:head>
+	<title>Register</title>
+</svelte:head>
