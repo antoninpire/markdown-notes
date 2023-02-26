@@ -1,9 +1,10 @@
 import { fail, redirect, type Actions } from '@sveltejs/kit';
+import { ClientResponseError } from 'pocketbase';
 import { z } from 'zod';
 
 const schema = z.object({
 	email: z.string().email({ message: 'The email address is not valid' }),
-	password: z.string().min(6, { message: 'Password must be at least 6 characters' })
+	password: z.string()
 });
 
 export const actions: Actions = {
@@ -22,7 +23,8 @@ export const actions: Actions = {
 		try {
 			await locals.pb.collection('users').authWithPassword(email, password);
 		} catch (e) {
-			console.error(e);
+			if (e instanceof ClientResponseError)
+				return fail(e.status, { error: true, errors: [{ message: e.message }] });
 			throw e;
 		}
 

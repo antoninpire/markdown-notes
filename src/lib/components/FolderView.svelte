@@ -9,7 +9,7 @@
 		noteContent.set(content);
 	}
 
-	$: console.log('CONTENT', $noteContent);
+	// $: console.log('CONTENT', $noteContent);
 </script>
 
 <Collapsible label={folder.label}>

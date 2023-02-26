@@ -8,11 +8,6 @@ const schema = z.object({
 
 export const actions: Actions = {
 	save: async ({ locals, request }) => {
-		const currentUser = locals.pb.authStore.model;
-
-		if (currentUser === null)
-			return fail(401, { error: true, errors: [{ message: 'Unauthorized' }] });
-
 		const formData = Object.fromEntries(await request.formData());
 
 		const data = schema.safeParse(formData);

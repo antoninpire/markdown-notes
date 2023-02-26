@@ -55,13 +55,6 @@
 				</a>
 				<Button>Register</Button>
 			</div>
-			<!-- {#if form?.error}
-				<div class="mt-2 text-red-500 text-sm flex flex-col items-center">
-					{#each form.errors as error}
-						<span>{error.message}</span>
-					{/each}
-				</div>
-			{/if} -->
 		</form>
 	</Card>
 </div>

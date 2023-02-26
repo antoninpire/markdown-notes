@@ -1,11 +1,6 @@
 <script>
 	import { SvelteToast } from '@zerodevx/svelte-toast';
 	import '../app.css';
-
-	// $: {
-	// 	if(!!$currentUser?.email) goto('/notes')
-	// 	else goto('/login')
-	// }
 </script>
 
 <main class="w-screen min-h-screen">
