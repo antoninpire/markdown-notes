@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { noteContent } from '$lib/stores/note';
+	import { currentNoteContent } from '$lib/stores/note';
 	import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core';
 	import { listener, listenerCtx } from '@milkdown/plugin-listener';
 	import { commonmark } from '@milkdown/preset-commonmark';
@@ -17,9 +17,10 @@
 		editor = Editor.make()
 			.config((ctx) => {
 				ctx.set(rootCtx, dom);
-				ctx.set(defaultValueCtx, $noteContent);
+				ctx.set(defaultValueCtx, $currentNoteContent ?? '');
 				ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {
-					noteContent.set(markdown);
+					// noteContent.set(markdown);
+					currentNoteContent.set(markdown);
 					hasBeenUpdated = true;
 				});
 			})
@@ -29,8 +30,12 @@
 			.create();
 
 		editor.then((e) => {
-			unsubscribe = noteContent.subscribe((content) => {
-				e.action(replaceAll(content));
+			// unsubscribe = noteContent.subscribe((content) => {
+			// 	e.action(replaceAll(content));
+			// 	hasBeenUpdated = false;
+			// });
+			unsubscribe = currentNoteContent.subscribe((curr) => {
+				e.action(replaceAll(curr ?? ''));
 				hasBeenUpdated = false;
 			});
 		});

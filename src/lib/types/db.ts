@@ -3,6 +3,8 @@ export type User = {
 	name?: string;
 	created: Date;
 	updated: Date;
+	collectionId: string;
+	collectionName: string;
 };
 
 export type Note = {
@@ -17,6 +19,8 @@ export type Note = {
 	};
 	created: Date;
 	updated: Date;
+	collectionId: string;
+	collectionName: string;
 };
 
 export type Folder = {
@@ -30,4 +34,6 @@ export type Folder = {
 	};
 	created: Date;
 	updated: Date;
+	collectionId: string;
+	collectionName: string;
 };

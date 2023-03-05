@@ -1,18 +1,14 @@
 <script lang="ts">
 	import Collapsible from '$lib/components/Collapsible.svelte';
+	import NoteItem from '$lib/components/NoteItem.svelte';
 	import chevronDown from '$lib/icons/chevron-down.svg?raw';
 	import chevronRight from '$lib/icons/chevron-right.svg?raw';
 	import { folderContextMenu } from '$lib/stores/context-menus';
-	import { noteContent } from '$lib/stores/note';
 	import type { Folder } from '$lib/types/db';
 	import Icon from 'svelte-icon/Icon.svelte';
 
 	export let folder: Folder;
 	let expanded = false;
-
-	function onClick(content: string) {
-		noteContent.set(content);
-	}
 
 	async function onRightClick(e: MouseEvent) {
 		folderContextMenu.set({
@@ -38,11 +34,6 @@
 	</button>
 
 	{#each folder?.expand?.['notes(folder)'] ?? [] as note}
-		<button
-			on:click={() => onClick(note.content ?? '')}
-			class="bg-transparent pl-2 text-headline py-[2px] flex gap-2 items-center w-full border-none m-0 rounded hover:bg-white/10"
-		>
-			{note.title}
-		</button>
+		<NoteItem {note} />
 	{/each}
 </Collapsible>

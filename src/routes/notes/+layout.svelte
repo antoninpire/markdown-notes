@@ -2,19 +2,18 @@
 	import FolderContextMenu from '$lib/components/FolderContextMenu.svelte';
 	import NoteContextMenu from '$lib/components/NoteContextMenu.svelte';
 	import Sidebar from '$lib/components/Sidebar.svelte';
-	import { toast } from '$lib/utils/toast';
-	import type { ActionData, LayoutData } from './$types';
+	import type { LayoutData } from './$types';
 
 	export let data: LayoutData;
-	export let form: ActionData;
+	// export let form: ActionData;
 
-	$: {
-		if (form?.error) {
-			toast.error(form.errors[0].message);
-		} else if (form?.success) {
-			toast.success('The note was successfully saved !');
-		}
-	}
+	// $: {
+	// 	if (form?.error) {
+	// 		toast.error(form.errors[0].message);
+	// 	} else if (form?.success) {
+	// 		toast.success('The note was successfully saved !');
+	// 	}
+	// }
 </script>
 
 <div
@@ -22,7 +21,6 @@
 >
 	<Sidebar {data} />
 	<div><slot /></div>
+	<FolderContextMenu />
+	<NoteContextMenu />
 </div>
-
-<FolderContextMenu />
-<NoteContextMenu />

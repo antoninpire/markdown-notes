@@ -9,6 +9,13 @@
 </main>
 
 <style>
+	:root {
+		--toastContainerTop: auto;
+		--toastContainerRight: auto;
+		--toastContainerBottom: 3rem;
+		--toastContainerLeft: calc(50vw - 3rem);
+	}
+
 	@font-face {
 		font-family: 'Proxima';
 		font-style: normal;

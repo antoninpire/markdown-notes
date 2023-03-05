@@ -5,6 +5,7 @@
 	export let value: string | number = '';
 	export let type: 'text' | 'password' | 'number' = 'text';
 	export let name: string | undefined = undefined;
+	export let maxlength: number = 75;
 
 	const handleInput = (e: Event) => {
 		const target = e.target as HTMLInputElement;
@@ -19,5 +20,7 @@
 	{type}
 	{id}
 	{name}
+	{maxlength}
+	{value}
 	on:input={handleInput}
 />
